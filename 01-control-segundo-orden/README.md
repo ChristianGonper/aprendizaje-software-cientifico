@@ -17,15 +17,17 @@ Parte real: velocidad de decaimiento. Parte imaginaria: frecuencia de oscilació
 - **$\zeta$ (amortiguamiento)**: forma de la respuesta. $\zeta<1$ subamortiguado (polos complejos, oscila), $\zeta=1$ crítico (polo doble real), $\zeta>1$ sobreamortiguado (dos polos reales, uno lento).
 - **$\omega_n$ (frecuencia natural)**: escala de tiempo. Con $\zeta$ fija, duplicar $\omega_n$ hace la respuesta el doble de rápida, con la misma forma.
 
-$$M_p = \exp\left(\frac{-\zeta\pi}{\sqrt{1-\zeta^2}}\right), \qquad t_s(2\,\%) \approx \frac{4}{\zeta\omega_n}.$$
+$$M_p = \exp\left(\frac{-\zeta\pi}{\sqrt{1-\zeta^2}}\right), \qquad t_s \approx \frac{4}{\zeta\omega_n}.$$
+
+$t_s$ es el tiempo de establecimiento en la banda del 2 %.
 
 ## Qué hace [segundo_orden.py](segundo_orden.py)
 
 1. `G(zeta, wn)`: crea la función de transferencia con `control.tf`.
-2. Escalón con $\omega_n=2$ y $\zeta \in \{0.1,\ 0.3,\ 0.5,\ 0.7,\ 1,\ 2\}$.
-3. Escalón con $\zeta=0.3$ y $\omega_n \in \{0.5,\ 1,\ 2,\ 4\}$.
+2. Escalón con $\omega_n=2$ y $\zeta \in \lbrace 0.1, 0.3, 0.5, 0.7, 1, 2 \rbrace$.
+3. Escalón con $\zeta=0.3$ y $\omega_n \in \lbrace 0.5, 1, 2, 4 \rbrace$.
 4. `control.step_info` ($M_p$, tiempo de subida del 10 % al 90 %, $t_s$ al 2 %) frente a las fórmulas, más los polos.
-5. Bode para $\zeta \in \{0.1,\ 0.3,\ 0.7,\ 2\}$.
+5. Bode para $\zeta \in \lbrace 0.1, 0.3, 0.7, 2 \rbrace$.
 6. El mismo sistema en espacio de estados, integrado con `scipy.integrate.solve_ivp` y superpuesto a la función de transferencia.
 
 Desde la raíz del repositorio:

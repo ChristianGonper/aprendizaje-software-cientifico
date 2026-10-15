@@ -9,6 +9,7 @@ Cada lección vive en su propia carpeta, con el código, las notas y las figuras
 | Lección | Contenido |
 | --- | --- |
 | [01 — Sistema de segundo orden](01-control-segundo-orden/) | Respuesta al escalón, amortiguamiento $\zeta$, frecuencia natural $\omega_n$, diagrama de Bode y comparación entre función de transferencia y espacio de estados. |
+| [02 — Control PID](02-control-pid/) | Lazo cerrado con P, PI, PD y PID sobre un cabeceo reducido: error en régimen permanente, amortiguamiento, esfuerzo de mando y polos. |
 
 ## Entorno
 
@@ -17,6 +18,7 @@ El entorno se gestiona con [uv](https://docs.astral.sh/uv/). Hace falta Python 3
 ```bash
 uv sync
 uv run python 01-control-segundo-orden/segundo_orden.py
+uv run python 02-control-pid/pid.py
 ```
 
 Dependencias: NumPy, SciPy, Matplotlib y python-control (`control`), declaradas en [pyproject.toml](pyproject.toml).

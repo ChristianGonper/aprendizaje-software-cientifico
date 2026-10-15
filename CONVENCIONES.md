@@ -17,6 +17,8 @@ En Markdown, las matemáticas se escriben en LaTeX. GitHub pinta `$...$` en lín
 
 En línea: $\zeta$, $\omega_n$, $M_p$, $t_s$, $G(s)=\frac{\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2}$.
 
+No escribas `%` dentro de `$...$` ni de `$$...$$`. Markdown trata la barra de `\%` como un escape de puntuación y la elimina; el `%` que queda es un comentario de LaTeX y GitHub tira el resto de la línea. El tanto por ciento va fuera de las matemáticas, como en «banda del 2 %». Por la misma razón, `\,` y `\{` pierden la barra: las llaves de un conjunto se escriben `\lbrace` y `\rbrace`.
+
 Destacada:
 
 $$G(s)=\frac{\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2}.$$
