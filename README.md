@@ -4,6 +4,8 @@ Repositorio de Christian para aprender software científico y herramientas de in
 
 Cada lección vive en su propia carpeta, con el código, las notas y las figuras. Las convenciones de escritura y de entorno están en [CONVENCIONES.md](CONVENCIONES.md).
 
+El índice y las demostraciones en HTML se publican en <https://christiangonper.github.io/aprendizaje-software-cientifico/>. En el repositorio, la fuente de GitHub Pages (Settings → Pages → Source) tiene que ser GitHub Actions.
+
 ## Índice
 
 | Lección | Contenido |

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aprendizaje de software científico</title>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    body {
+      margin: 0;
+      background: #f7f5f2;
+      color: #1c1b19;
+      font: 18px/1.55 "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    }
+    main { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 0.4rem; }
+    h2 { font-size: 1.35rem; margin-top: 2.2rem; }
+    p, li { max-width: 40rem; }
+    ul { padding-left: 1.2rem; }
+    li { margin: 0.9rem 0; }
+    li p { margin: 0.25rem 0 0; }
+    a { color: #0b3a66; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Aprendizaje de software científico</h1>
+  <p>
+    Repositorio para aprender software científico y herramientas de ingeniería,
+    con orientación a la ingeniería aeroespacial. Cada lección y cada
+    demostración viven en su carpeta, con el código, las notas y las figuras.
+  </p>
+
+  <h2>Demostraciones</h2>
+  <ul>
+    <li>
+      <a href="demos/01-ala-aerosandbox-pyvista/index.html">01 — Ala con VLM</a>
+      <p>
+        Ala en flecha, vortex lattice, optimización del estrechamiento y de la
+        torsión, y malla 3D con PyVista.
+      </p>
+    </li>
+  </ul>
+
+  <h2>Lecciones</h2>
+  <ul>
+    <li>
+      <a href="01-control-segundo-orden/README.md">01 — Sistema de segundo orden</a>
+      <p>
+        Respuesta al escalón, amortiguamiento $\zeta$, frecuencia natural
+        $\omega_n$, diagrama de Bode y comparación entre función de
+        transferencia y espacio de estados.
+      </p>
+    </li>
+    <li>
+      <a href="02-control-pid/README.md">02 — Control PID</a>
+      <p>
+        Lazo cerrado con P, PI, PD y PID sobre un cabeceo reducido: error en
+        régimen permanente, amortiguamiento, esfuerzo de mando y polos.
+      </p>
+    </li>
+    <li>
+      <a href="03-saturacion-antiwindup/README.md">03 — Saturación y anti-windup</a>
+      <p>
+        PID con mando saturado: windup del integrador, integración condicional,
+        back-calculation y derivada sobre la medida.
+      </p>
+    </li>
+  </ul>
+
+  <p>
+    Las notas de las lecciones están en Markdown. Las convenciones de escritura
+    y de entorno están en <a href="CONVENCIONES.md">CONVENCIONES.md</a>.
+  </p>
+</main>
+</body>
+</html>
