@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ala en flecha — VLM y PyVista</title>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    body {
+      margin: 0;
+      background: #f7f5f2;
+      color: #1c1b19;
+      font: 18px/1.55 "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    }
+    main { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 0.4rem; }
+    h2 { font-size: 1.35rem; margin-top: 2.2rem; }
+    p, li { max-width: 40rem; }
+    figure { margin: 1.2rem 0; }
+    img, iframe { width: 100%; border: 1px solid #d9d3cb; background: white; }
+    iframe { height: 640px; }
+    figcaption { font-size: 0.95rem; color: #4a453e; margin-top: 0.4rem; }
+    table { border-collapse: collapse; background: white; }
+    th, td { border: 1px solid #d9d3cb; padding: 0.35rem 0.6rem; text-align: right; }
+    th:first-child, td:first-child { text-align: left; }
+    code { font-family: ui-monospace, monospace; font-size: 0.9em; }
+    a { color: #0b3a66; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Ala en flecha</h1>
+  <p>
+    Vortex lattice de una ala trapezoidal con perfil NACA 2412, una optimización
+    pequeña del estrechamiento y de la torsión, y la malla de paneles en 3D.
+    El código está en <a href="ala.py">ala.py</a>.
+  </p>
+
+  <h2>Geometría</h2>
+  <p>
+    Envergadura $b=10$ m, superficie $S=10$ m$^2$, así que $\mathrm{AR}=10$.
+    Flecha del borde de ataque: 25 grados. Velocidad 50 m/s.
+    El estrechamiento $\lambda=c_{\mathrm{punta}}/c_{\mathrm{raiz}}$ no cambia
+    $b$ ni $S$. La torsión es cero en la raíz.
+  </p>
+  <p>
+    El VLM no tiene viscosidad. $C_D$ es resistencia inducida.
+  </p>
+
+  <h2>Sustentación</h2>
+  <p>
+    Entre $-2$ y $8$ grados la pendiente es $C_{L\alpha}=0.0831$ por grado
+    ($4.76$ por radián). La curvatura del perfil deja $C_L(0)=0.160$.
+  </p>
+  <figure>
+    <img src="cl_alpha.png" alt="Curva de sustentación frente al ángulo de ataque">
+    <figcaption>Coeficiente de sustentación. La recta es el ajuste entre $-2$ y $8$ grados.</figcaption>
+  </figure>
+  <figure>
+    <img src="polar.png" alt="Polar de sustentación y resistencia inducida">
+    <figcaption>Polar del ala de partida. El punto marcado es $C_L=0.5$.</figcaption>
+  </figure>
+
+  <h2>Menos resistencia inducida</h2>
+  <p>
+    A $C_L=0.5$ se minimiza $C_D$ con <code>asb.Opti</code>. Las variables son
+    $\lambda$, la torsión de punta y el ángulo de ataque. La eficiencia
+  </p>
+  $$e=\frac{C_L^2}{\pi \mathrm{AR} C_D}$$
+  <p>
+    usa la misma $C_D$ del campo cercano antes y después.
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Caso</th>
+        <th>$\lambda$</th>
+        <th>torsión de punta</th>
+        <th>$\alpha$</th>
+        <th>$C_L$</th>
+        <th>$C_D$</th>
+        <th>$e$</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Antes</td><td>0.45</td><td>0</td><td>4.08°</td>
+        <td>0.500</td><td>0.007967</td><td>0.999</td>
+      </tr>
+      <tr>
+        <td>Después</td><td>1.00</td><td>−4.83°</td><td>6.53°</td>
+        <td>0.500</td><td>0.007794</td><td>1.021</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    La flecha carga la punta. El óptimo de esta parametrización llega al límite
+    $\lambda=1$ y añade torsión negativa: descarga la punta y se acerca a la
+    elipse. $e$ un poco por encima de 1 es el campo cercano del VLM, no una
+    ala mejor que la elíptica.
+  </p>
+  <figure>
+    <img src="sustentacion.png" alt="Sustentación en envergadura comparada con la elipse">
+    <figcaption>Sustentación por unidad de envergadura a $C_L=0.5$.</figcaption>
+  </figure>
+
+  <h2>Paneles en 3D</h2>
+  <p>
+    Ala de partida a $C_L=0.5$. El color es $\Delta C_p$: fuerza normal del
+    panel dividida por la presión dinámica y el área. Se puede girar la vista.
+    El fichero <a href="ala.vtu">ala.vtu</a> abre en ParaView, con
+    <code>delta_Cp</code> y <code>gamma</code> en las celdas.
+  </p>
+  <figure>
+    <img src="ala_3d.png" alt="Captura de la malla de paneles coloreada por delta Cp">
+    <figcaption>Captura sin ventana.</figcaption>
+  </figure>
+  <iframe src="ala_interactiva.html" title="Vista interactiva del ala"></iframe>
+</main>
+</body>
+</html>

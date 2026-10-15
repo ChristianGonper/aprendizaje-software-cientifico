@@ -7,6 +7,10 @@ dependencies = [
     "scipy",
     "matplotlib",
     "control",
+    "aerosandbox>=4.2.10",
+    "pyvista>=0.49.1",
+    "trame-pyvista>=0.2.1",
+    "nest-asyncio2>=1.7.4",
 ]
 
 [tool.uv]
