@@ -45,7 +45,7 @@ uv run python 02-control-pid/pid.py
 
 Con $K_p=3$ las fórmulas de P dan $\omega_n=2$, $\zeta=0.25$ y $e_{ss}=0.25$. El par complejo de los otros tres casos es el dominante; el polo real cercano a $-7$ es el filtro de la derivada.
 
-| Control | $M_p$ [%] | $t_r$ [s] | $t_s$ [s] | $e_{ss}$ | $|u|_{\max}$ |
+| Control | $M_p$ [%] | $t_r$ [s] | $t_s$ [s] | $e_{ss}$ | $\lvert u\rvert_{\max}$ |
 | --- | --- | --- | --- | --- | --- |
 | P | 44.43 | 0.630 | 7.061 | 0.2500 | 3.000 |
 | PD | 19.30 | 0.395 | 2.335 | 0.2500 | 23.000 |
